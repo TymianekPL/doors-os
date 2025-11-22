@@ -11,6 +11,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Setup Visual Studio environment
+        shell: cmd
+        run: call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
       - name: configure
         run: cmake -S . --preset=MsvcNinjaRelease -B build
 #      - name: build debug
@@ -27,8 +30,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: init
         run: choco install ninja
-      - name: install LLVM 20
-        run: choco install llvm --version=20.0.0
+      - name: Add LLVM to PATH
+        run: echo "C:\Program Files\LLVM\bin" >> $env:GITHUB_PATH
       - name: configure
         run: cmake -S . --preset=ClangClNinjaRelease -B build
       - name: build debug
@@ -46,8 +49,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: init
         run: choco install ninja
-      - name: install LLVM 22
-        run: choco install llvm --version=22.0.0
+      - name: Download LLVM 22
+        run: |
+          curl -L -o llvm.zip https://github.com/llvm/llvm-project/releases/download/llvmorg-22.0.0/LLVM-22.0.0-win64.zip
+          Expand-Archive llvm.zip -DestinationPath $env:USERPROFILE\llvm-22
+          echo "$env:USERPROFILE\llvm-22\bin" >> $env:GITHUB_PATH
       - name: configure
         run: cmake -S . --preset=ClangClNinjaRelease -B build
       - name: build debug
