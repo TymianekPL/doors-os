@@ -17,8 +17,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /EHs-")
 set_property(TARGET BootEFI PROPERTY IMPORTED_CXX_MODULES_COMPILE_FEATURES cxx_std_23)
 target_compile_features(BootEFI PUBLIC cxx_std_23)
 target_include_directories(BootEFI PRIVATE ${CMAKE_SOURCE_DIR}/Shared/Include)
-target_include_directories(BootEFI PRIVATE "C:/SDK/Uefi/Include")
-target_include_directories(BootEFI PRIVATE "C:/SDK/Uefi/Include/x64")
+
+target_include_directories(BootEFI PRIVATE
+    "${CMAKE_SOURCE_DIR}/extern/edk2/MdePkg/Include"
+    "${CMAKE_SOURCE_DIR}/extern/edk2/MdePkg/Include/X64"
+    "${CMAKE_SOURCE_DIR}/extern/edk2/MdePkg/Include/Uefi"
+)
 
 target_compile_options(BootEFI PRIVATE
   $<$<CXX_COMPILER_ID:MSVC>:/wd4162>

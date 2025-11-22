@@ -5,7 +5,7 @@ AlwaysBreakTemplateDeclarations: Yes
 BreakBeforeBraces: Allman
 ColumnLimit: 160
 SpaceAfterTemplateKeyword: true
-Standard: c++23
+Standard: c++20
 TabWidth: 5
 IndentWidth: 5
 UseTab: Always

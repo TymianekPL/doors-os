@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/CMakeFiles/edk2-populate"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/CMakeFiles/edk2-populate.rule"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/CMakeFiles/edk2-populate-complete.rule"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-build.rule"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-configure.rule"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-download.rule"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-install.rule"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-mkdir.rule"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-patch.rule"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-test.rule"
+		},
+		{
+			"file" : "F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-update.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"edk2-populate"
+		],
+		"name" : "edk2-populate"
+	}
+}

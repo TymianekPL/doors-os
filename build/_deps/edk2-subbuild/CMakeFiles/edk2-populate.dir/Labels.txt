@@ -1,0 +1,14 @@
+# Target labels
+ edk2-populate
+# Source files and their labels
+F:/source/OS/Doors/build/_deps/edk2-subbuild/CMakeFiles/edk2-populate
+F:/source/OS/Doors/build/_deps/edk2-subbuild/CMakeFiles/edk2-populate.rule
+F:/source/OS/Doors/build/_deps/edk2-subbuild/CMakeFiles/edk2-populate-complete.rule
+F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-build.rule
+F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-configure.rule
+F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-download.rule
+F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-install.rule
+F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-mkdir.rule
+F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-patch.rule
+F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-test.rule
+F:/source/OS/Doors/build/_deps/edk2-subbuild/edk2-populate-prefix/src/edk2-populate-stamp/edk2-populate-update.rule

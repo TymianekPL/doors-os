@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.28)
 
 if (NOT DEFINED PROJECT_NAME)
   set(PROJECT_NAME "Doors")

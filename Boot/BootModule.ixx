@@ -8,4 +8,4 @@ namespace BootLoader
 	{
 		uefi.Reset(ResetType::Cold, 0);
 	}
-}
+} // namespace BootLoader
