@@ -12,11 +12,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: configure
-        run: cmake -S . --preset=vs22 -B build
+        run: cmake -S . --preset=MsvcNinjaRelease -B build
 #      - name: build debug
 #        run: cmake --build build --config=Debug
       - name: build release
-        run: cmake --build build --config=MsvcNinjaRelease
+        run: cmake --build build --config=Release
       - name: test debug
         run: cd build; ctest -C Debug
       - name: test release
@@ -30,11 +30,11 @@ jobs:
       - name: install LLVM 20
         run: choco install llvm --version=20.0.0
       - name: configure
-        run: cmake -S . --preset=ninja-clang -B build
+        run: cmake -S . --preset=ClangClNinjaRelease -B build
       - name: build debug
  #       run: cmake --build build --config=Debug
  #     - name: build release
-        run: cmake --build build --config=ClangClNinjaRelease
+        run: cmake --build build --config=Release
       - name: test debug
         run: cd build; ctest -C Debug
       - name: test release
@@ -49,11 +49,11 @@ jobs:
       - name: install LLVM 22
         run: choco install llvm --version=22.0.0
       - name: configure
-        run: cmake -S . --preset=ninja-clang -B build
+        run: cmake -S . --preset=ClangClNinjaRelease -B build
       - name: build debug
 #        run: cmake --build build --config=Debug
 #      - name: build release
-        run: cmake --build build --config=ClangClNinjaRelease
+        run: cmake --build build --config=Release
       - name: test debug
         run: cd build; ctest -C Debug
       - name: test release
