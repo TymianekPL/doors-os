@@ -32,6 +32,8 @@ jobs:
         run: choco install ninja
       - name: install LLVM 20
         run: choco install llvm --version=20.1.8
+      - name: Update submodules
+        run: git submodule update --init --depth 1
       - name: configure
         run: cmake -S . --preset=ClangClNinjaRelease -B build
       - name: build debug
