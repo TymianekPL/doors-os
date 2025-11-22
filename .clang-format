@@ -1,0 +1,32 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+AlwaysBreakTemplateDeclarations: Yes
+BreakBeforeBraces: Allman
+ColumnLimit: 160
+SpaceAfterTemplateKeyword: true
+Standard: c++23
+TabWidth: 5
+IndentWidth: 5
+UseTab: Always
+AllowShortEnumsOnASingleLine: true
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortLambdasOnASingleLine: All
+AllowShortBlocksOnASingleLine: Always
+AllowShortIfStatementsOnASingleLine: Always
+AllowShortLoopsOnASingleLine: true
+IndentRequires: true
+IncludeCategories:
+    # Headers in <> with .h extension.
+    - Regex: '<([A-Za-z0-9\/-_])+\.h>'
+      Priority: 10
+    # Headers in <> with .hpp extension.
+    - Regex: '<([A-Za-z0-9\/-_])+\.hpp>'
+      Priority: 20
+    # Headers in <> without extension.
+    - Regex: '<([A-Za-z0-9\/-_])+>'
+      Priority: 30
+PointerAlignment: Left
+QualifierAlignment: Left
+NamespaceIndentation: All
