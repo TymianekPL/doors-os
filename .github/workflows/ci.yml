@@ -33,7 +33,7 @@ jobs:
       - name: install LLVM 20
         run: choco install llvm --version=20.0.0
       - name: configure
-        run: cmake -S . --preset=ninja-clang-20 -B build
+        run: cmake -S . --preset=ClangClNinjaRelease -B build
       - name: build debug
         run: cmake --build build --config=Debug
       - name: build release
