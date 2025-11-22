@@ -23,7 +23,26 @@ jobs:
         run: cd build; ctest -C Debug
       - name: test release
         run: cd build; ctest -C Release
-  
+  windows-clang-20:
+    name: Windows Clang-CL 20
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install ninja
+        run: choco install ninja
+      - name: install LLVM 20
+        run: choco install llvm --version=20.0.0
+      - name: configure
+        run: cmake -S . --preset=ClangClNinjaRelease -B build
+      - name: build debug
+        run: cmake --build build --config=Debug
+      - name: build release
+        run: cmake --build build --config=Release
+      - name: test debug
+        run: cd build && ctest -C Debug
+      - name: test release
+        run: cd build && ctest -C Release
+
   windows-clang-tidy:
     name: Windows Clang-Tidy
     runs-on: windows-latest
