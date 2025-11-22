@@ -3,7 +3,7 @@ Language: Cpp
 BasedOnStyle: LLVM
 AlwaysBreakTemplateDeclarations: Yes
 BreakBeforeBraces: Allman
-ColumnLimit: 160
+ColumnLimit: 140
 SpaceAfterTemplateKeyword: true
 Standard: c++20
 TabWidth: 5
@@ -17,6 +17,7 @@ AllowShortBlocksOnASingleLine: Always
 AllowShortIfStatementsOnASingleLine: Always
 AllowShortLoopsOnASingleLine: true
 IndentRequires: true
+AccessModifierOffset: -5
 IncludeCategories:
     # Headers in <> with .h extension.
     - Regex: '<([A-Za-z0-9\/-_])+\.h>'

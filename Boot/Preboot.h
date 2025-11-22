@@ -1,9 +1,8 @@
 #pragma once
 
-#include "Preboot.h"
 #include "UEFI.h"
 
 namespace BootLoader
 {
-	void Main(Uefi& uefi) noexcept;
+	void InitialisePreboot(Uefi& uefi) noexcept;
 } // namespace BootLoader

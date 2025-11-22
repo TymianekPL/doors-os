@@ -2,6 +2,23 @@
     "version": 3,
     "configurePresets": [
         {
+            "name": "MsvcNinjaDebug",
+            "displayName": "Ninja + MSVC (Debug, x64)",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_POLICY_DEFAULT_CMP0091": "NEW",
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe"
+            },
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            }
+        },
+        {
             "name": "MsvcNinjaRelease",
             "displayName": "Ninja + MSVC (Release, x64)",
             "generator": "Ninja",
@@ -12,6 +29,24 @@
                 "CMAKE_POLICY_DEFAULT_CMP0091": "NEW",
                 "CMAKE_C_COMPILER": "cl.exe",
                 "CMAKE_CXX_COMPILER": "cl.exe"
+            },
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            }
+        },
+        {
+            "name": "ClangClNinjaDebug",
+            "displayName": "Ninja + clang-cl (Debug, x64)",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_POLICY_DEFAULT_CMP0091": "NEW",
+                "CMAKE_C_COMPILER": "clang-cl.exe",
+                "CMAKE_CXX_COMPILER": "clang-cl.exe",
+                "CMAKE_CXX_STANDARD": "23"
             },
             "architecture": {
                 "value": "x64",
@@ -35,6 +70,6 @@
                 "value": "x64",
                 "strategy": "external"
             }
-        }    
+        }
     ]
 }
