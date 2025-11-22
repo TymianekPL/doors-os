@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"F:/source/OS/Doors/build/_deps/edk2-subbuild/cmake_install.cmake"
-	],
-	"Parallel" : false
-}
