@@ -7,68 +7,57 @@ on:
     branches: [ "main", "development" ]
 
 jobs:
-  windows-msvc:
-    name: Windows MSVC 19
+  windows-vs22:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Setup MSVC
-        uses: actions/setup-msvc@v1
-        with:
-          version: '19'
-      - name: Cache CMake
-        uses: actions/cache@v3
-        with:
-          path: build
-          key: ${{ runner.os }}-cmake-${{ hashFiles('**/CMakeLists.txt') }}
-      - name: Configure CMake
-        run: cmake -B build -S . -DCMAKE_GENERATOR="Visual Studio 17 2022" -A x64
-      - name: Build
-        run: cmake --build build --config Release
-      - name: Run tests
-        run: ctest --test-dir build --output-on-failure
-
-  windows-clang-cl-20:
-    name: Windows Clang-CL 20
+      - uses: actions/checkout@v4
+      - name: configure
+        run: cmake -S . --preset=vs22 -B build
+      - name: build debug
+        run: cmake --build build --config=Debug
+      - name: build release
+        run: cmake --build build --config=Release
+      - name: test debug
+        run: cd build; ctest -C Debug
+      - name: test release
+        run: cd build; ctest -C Release
+  windows-clang:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install LLVM
-        uses: llvm/llvm-project-action@v1
-        with:
-          version: '20.0.0'
-      - name: Cache CMake
-        uses: actions/cache@v3
-        with:
-          path: build
-          key: ${{ runner.os }}-cmake-${{ hashFiles('**/CMakeLists.txt') }}
-      - name: Configure CMake
-        run: cmake -B build -S . -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -G "Ninja"
-      - name: Build
-        run: cmake --build build
-      - name: Run tests
-        run: ctest --test-dir build --output-on-failure
+      - uses: actions/checkout@v4
+      - name: init
+        run: choco install ninja
+      - name: install LLVM 20
+        run: choco install llvm --version=20.0.0
+      - name: configure
+        run: cmake -S . --preset=ninja-clang -B build
+      - name: build debug
+        run: cmake --build build --config=Debug
+      - name: build release
+        run: cmake --build build --config=Release
+      - name: test debug
+        run: cd build; ctest -C Debug
+      - name: test release
+        run: cd build; ctest -C Release
 
   windows-clang-22:
-    name: Windows Clang 22
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Install LLVM
-        uses: llvm/llvm-project-action@v1
-        with:
-          version: '22.0.0'
-      - name: Cache CMake
-        uses: actions/cache@v3
-        with:
-          path: build
-          key: ${{ runner.os }}-cmake-${{ hashFiles('**/CMakeLists.txt') }}
-      - name: Configure CMake
-        run: cmake -B build -S . -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -G "Ninja"
-      - name: Build
-        run: cmake --build build
-      - name: Run tests
-        run: ctest --test-dir build --output-on-failure
+      - uses: actions/checkout@v4
+      - name: init
+        run: choco install ninja
+      - name: install LLVM 22
+        run: choco install llvm --version=22.0.0
+      - name: configure
+        run: cmake -S . --preset=ninja-clang -B build
+      - name: build debug
+        run: cmake --build build --config=Debug
+      - name: build release
+        run: cmake --build build --config=Release
+      - name: test debug
+        run: cd build; ctest -C Debug
+      - name: test release
+        run: cd build; ctest -C Release
 
   ubuntu-clang-tidy:
     name: Ubuntu Clang-Tidy
