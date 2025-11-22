@@ -56,7 +56,7 @@ jobs:
         run: |
           $files = Get-ChildItem -Path Boot\*.cpp, Kernel\*.cpp
           foreach ($file in $files) {
-              clang-tidy -std=c++23 $file.FullName -- `
+              clang-tidy -extra-arg=-std=c++23 $file.FullName -- `
                 -I"${{ github.workspace }}\include" `
                 -I"${{ github.workspace }}\extern\edk2\MdePkg\Include" `
                 -I"${{ github.workspace }}\extern\edk2\MdePkg\Include\X64" `
