@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main", "development" ]
+  pull_request:
+    branches: [ "main", "development" ]
+
+jobs:
+  windows-msvc:
+    name: Windows MSVC 19
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup MSVC
+        uses: actions/setup-msvc@v1
+        with:
+          version: '19'
+      - name: Cache CMake
+        uses: actions/cache@v3
+        with:
+          path: build
+          key: ${{ runner.os }}-cmake-${{ hashFiles('**/CMakeLists.txt') }}
+      - name: Configure CMake
+        run: cmake -B build -S . -DCMAKE_GENERATOR="Visual Studio 17 2022" -A x64
+      - name: Build
+        run: cmake --build build --config Release
+      - name: Run tests
+        run: ctest --test-dir build --output-on-failure
+
+  windows-clang-cl-20:
+    name: Windows Clang-CL 20
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install LLVM
+        uses: llvm/llvm-project-action@v1
+        with:
+          version: '20.0.0'
+      - name: Cache CMake
+        uses: actions/cache@v3
+        with:
+          path: build
+          key: ${{ runner.os }}-cmake-${{ hashFiles('**/CMakeLists.txt') }}
+      - name: Configure CMake
+        run: cmake -B build -S . -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -G "Ninja"
+      - name: Build
+        run: cmake --build build
+      - name: Run tests
+        run: ctest --test-dir build --output-on-failure
+
+  windows-clang-22:
+    name: Windows Clang 22
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install LLVM
+        uses: llvm/llvm-project-action@v1
+        with:
+          version: '22.0.0'
+      - name: Cache CMake
+        uses: actions/cache@v3
+        with:
+          path: build
+          key: ${{ runner.os }}-cmake-${{ hashFiles('**/CMakeLists.txt') }}
+      - name: Configure CMake
+        run: cmake -B build -S . -DCMAKE_C_COMPILER=clang-cl -DCMAKE_CXX_COMPILER=clang-cl -G "Ninja"
+      - name: Build
+        run: cmake --build build
+      - name: Run tests
+        run: ctest --test-dir build --output-on-failure
+
+  ubuntu-clang-tidy:
+    name: Ubuntu Clang-Tidy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Clang-Tidy
+        run: sudo apt-get update && sudo apt-get install -y clang-tidy
+      - name: Run Clang-Tidy
+        run: |
+          clang-tidy **/*.cpp -- -Iinclude
