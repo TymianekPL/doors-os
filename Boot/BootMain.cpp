@@ -1,6 +1,6 @@
 #include <Uefi.h>
 
-import BootModule;
+#include "BootModule.h"
 
 extern "C" EFI_STATUS EFIAPI EfiEntry(EFI_HANDLE ImageHandle, EFI_SYSTEM_TABLE* SystemTable) noexcept
 {

@@ -1,9 +1,6 @@
-module;
-
+#include "UEFI.h"
 #include <intrin.h>
 #include <utility>
-
-module UEFI;
 
 namespace BootLoader
 {

@@ -1,10 +1,10 @@
-export module BootModule;
+#pragma once
 
-export import UEFI;
+#include "UEFI.h"
 
 namespace BootLoader
 {
-	export void Main(Uefi& uefi) noexcept
+	void Main(Uefi& uefi) noexcept
 	{
 		uefi.Reset(ResetType::Cold, 0);
 	}

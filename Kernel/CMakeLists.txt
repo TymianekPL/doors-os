@@ -10,8 +10,8 @@ target_compile_options(Kernel PRIVATE
   $<$<C_COMPILER_ID:MSVC>:/GR- /GS- /Gs9999999 /Zl /Zc:externConstexpr /Zc:preprocessor>
   $<$<CXX_COMPILER_ID:MSVC>:/GR- /GS- /Gs9999999 /Zl /Zc:externConstexpr /Zc:preprocessor>
 
-  $<$<C_COMPILER_ID:Clang>:-fno-exceptions -fno-rtti -fno-stack-protector -fno-sanitize=all -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-builtins>
-  $<$<CXX_COMPILER_ID:Clang>:-fno-exceptions -fno-rtti -fno-stack-protector -fno-sanitize=all -fno-unwind-tables -fno-asynchronous-unwind-tables -fno-builtins>
+  $<$<C_COMPILER_ID:Clang>:/GR- /GS- /Gs9999999 /Zl>
+  $<$<CXX_COMPILER_ID:Clang>:/GR- /GS- /Gs9999999 /Zl>
 )
 
 target_link_options(Kernel PRIVATE

@@ -1,19 +1,13 @@
-add_executable(BootEFI)
+add_executable(BootEFI
+     UEFI.h
+     BootModule.h
+     BootMain.cpp
+     UEFI.cpp)
 
 target_include_directories(BootEFI PRIVATE
     "${CMAKE_SOURCE_DIR}/extern/edk2/MdePkg/Include"
     "${CMAKE_SOURCE_DIR}/extern/edk2/MdePkg/Include/X64"
     "${CMAKE_SOURCE_DIR}/extern/edk2/MdePkg/Include/Uefi"
-)
-
-target_sources(BootEFI
-    PUBLIC
-       FILE_SET cxx_modules TYPE CXX_MODULES FILES
-            BootModule.ixx
-            UEFI.ixx
-    PRIVATE
-        BootMain.cpp
-        UEFI.cpp
 )
 
 enablePCH(BootEFI)
@@ -42,10 +36,6 @@ target_link_options(BootEFI PRIVATE
   $<$<CXX_COMPILER_ID:MSVC>:/SUBSYSTEM:EFI_APPLICATION /MACHINE:X64 /MANIFEST:NO /DYNAMICBASE:NO /NXCOMPAT:NO /ENTRY:EfiEntry /NODEFAULTLIB>
   $<$<C_COMPILER_ID:Clang>:/SUBSYSTEM:EFI_APPLICATION /MACHINE:X64 /MANIFEST:NO /DYNAMICBASE:NO /NXCOMPAT:NO /ENTRY:EfiEntry /NODEFAULTLIB>
   $<$<CXX_COMPILER_ID:Clang>:/SUBSYSTEM:EFI_APPLICATION /MACHINE:X64 /MANIFEST:NO /DYNAMICBASE:NO /NXCOMPAT:NO /ENTRY:EfiEntry /NODEFAULTLIB>
-)
-
-set_target_properties(BootEFI PROPERTIES
-    LINK_FLAGS "/MANIFEST:NO /SUBSYSTEM:EFI_APPLICATION"
 )
 
 set_target_properties(BootEFI PROPERTIES
