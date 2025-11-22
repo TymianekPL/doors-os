@@ -24,15 +24,18 @@ jobs:
       - name: test release
         run: cd build; ctest -C Release
   
-  ubuntu-clang-tidy:
-    name: Ubuntu Clang-Tidy
-    runs-on: ubuntu-latest
+  windows-clang-tidy:
+    name: Windows Clang-Tidy
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
       - name: Update submodules
         run: git submodule update --init --depth 1
-      - name: Install Clang-Tidy
-        run: sudo apt-get update && sudo apt-get install -y clang-tidy
-      - name: Run Clang-Tidy
+
+      - name: Run clang-tidy
         run: |
-          clang-tidy **/*.cpp -- -Iinclude -Iextern/edk2/MdePkg/Include -Iextern/edk2/MdePkg/Include/X64 -Iextern/edk2/MdePkg/Include/Uefi
+          clang-tidy Boot/*.cpp Kernel/*.cpp -- ^
+            -I${{ github.workspace }}\include ^
+            -I${{ github.workspace }}\extern\edk2\MdePkg\Include ^
+            -I${{ github.workspace }}\extern\edk2\MdePkg\Include\X64 ^
+            -I${{ github.workspace }}\extern\edk2\MdePkg\Include\Uefi
