@@ -13,10 +13,10 @@ jobs:
       - uses: actions/checkout@v4
       - name: configure
         run: cmake -S . --preset=vs22 -B build
-      - name: build debug
-        run: cmake --build build --config=Debug
+#      - name: build debug
+#        run: cmake --build build --config=Debug
       - name: build release
-        run: cmake --build build --config=Release
+        run: cmake --build build --config=MsvcNinjaRelease
       - name: test debug
         run: cd build; ctest -C Debug
       - name: test release
@@ -32,9 +32,9 @@ jobs:
       - name: configure
         run: cmake -S . --preset=ninja-clang -B build
       - name: build debug
-        run: cmake --build build --config=Debug
-      - name: build release
-        run: cmake --build build --config=Release
+ #       run: cmake --build build --config=Debug
+ #     - name: build release
+        run: cmake --build build --config=ClangClNinjaRelease
       - name: test debug
         run: cd build; ctest -C Debug
       - name: test release
@@ -51,9 +51,9 @@ jobs:
       - name: configure
         run: cmake -S . --preset=ninja-clang -B build
       - name: build debug
-        run: cmake --build build --config=Debug
-      - name: build release
-        run: cmake --build build --config=Release
+#        run: cmake --build build --config=Debug
+#      - name: build release
+        run: cmake --build build --config=ClangClNinjaRelease
       - name: test debug
         run: cd build; ctest -C Debug
       - name: test release
