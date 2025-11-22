@@ -35,4 +35,4 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y clang-tidy
       - name: Run Clang-Tidy
         run: |
-          clang-tidy **/*.cpp -- -Iinclude
+          clang-tidy **/*.cpp -- -Iinclude -Iextern/edk2/MdePkg/Include -Iextern/edk2/MdePkg/Include/X64 -Iextern/edk2/MdePkg/Include/Uefi
