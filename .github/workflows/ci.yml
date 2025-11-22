@@ -33,5 +33,13 @@ jobs:
         run: git submodule update --init --depth 1
 
       - name: Run clang-tidy
+        shell: pwsh
         run: |
-          clang-tidy Boot/*.cpp Kernel/*.cpp -- -I${{ github.workspace }}\include -I${{ github.workspace }}\extern\edk2\MdePkg\Include -I${{ github.workspace }}\extern\edk2\MdePkg\Include\X64 -I${{ github.workspace }}\extern\edk2\MdePkg\Include\Uefi
+          $files = Get-ChildItem -Path Boot\*.cpp, Kernel\*.cpp
+          foreach ($file in $files) {
+              clang-tidy $file.FullName -- `
+                -I"${{ github.workspace }}\include" `
+                -I"${{ github.workspace }}\extern\edk2\MdePkg\Include" `
+                -I"${{ github.workspace }}\extern\edk2\MdePkg\Include\X64" `
+                -I"${{ github.workspace }}\extern\edk2\MdePkg\Include\Uefi"
+          }
