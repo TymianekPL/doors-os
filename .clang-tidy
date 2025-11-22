@@ -8,17 +8,35 @@ Checks: >
   portability-*,
   clang-analyzer-*,
   -modernize-use-trailing-return-type,
-  -cppcoreguidelines-avoid-non-const-global-variables
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  -modernize-redundant-void-arg,
+  -cppcoreguidelines-pro-type-const-cast,
+  -cppcoreguidelines-pro-type-reinterpret-cast,
+  -readability-braces-around-statements,
+  -cppcoreguidelines-special-member-functions,
+  -readability-redundant-member-init,
+  -bugprone-easily-swappable-parameters,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic
 
 CheckOptions:
-  # Indentation / braces / formatting
-  - key: readability-braces-around-statements.ShortStatementLines
-    value: '1'
+  # Identifier naming rules
   - key: readability-identifier-naming.ClassCase
     value: CamelCase
   - key: readability-identifier-naming.NamespaceCase
     value: CamelCase
   - key: readability-identifier-naming.FunctionCase
     value: CamelCase
+
+  # Non-private members (fields) use camelBack
   - key: readability-identifier-naming.MemberCase
     value: camelBack
+
+  # Private members: _camelBack
+  - key: readability-identifier-naming.PrivateMemberCase
+    value: camelBack
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: "_"
+
+  # Statement braces rule
+  - key: readability-braces-around-statements.ShortStatementLines
+    value: "1"
