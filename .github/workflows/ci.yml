@@ -34,8 +34,4 @@ jobs:
 
       - name: Run clang-tidy
         run: |
-          clang-tidy Boot/*.cpp Kernel/*.cpp -- ^
-            -I${{ github.workspace }}\include ^
-            -I${{ github.workspace }}\extern\edk2\MdePkg\Include ^
-            -I${{ github.workspace }}\extern\edk2\MdePkg\Include\X64 ^
-            -I${{ github.workspace }}\extern\edk2\MdePkg\Include\Uefi
+          clang-tidy Boot/*.cpp Kernel/*.cpp -- -I${{ github.workspace }}\include -I${{ github.workspace }}\extern\edk2\MdePkg\Include -I${{ github.workspace }}\extern\edk2\MdePkg\Include\X64 -I${{ github.workspace }}\extern\edk2\MdePkg\Include\Uefi
