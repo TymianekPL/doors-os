@@ -1,0 +1,4 @@
+- EFI
+boot\*.efi as \EFI\BOOT\*
+- System
+kernel\*.exe

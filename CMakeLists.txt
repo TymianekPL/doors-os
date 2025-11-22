@@ -4,7 +4,7 @@ if (NOT DEFINED PROJECT_NAME)
   set(PROJECT_NAME "Doors")
 endif()     
 
-project(${PROJECT_NAME}
+project(" words"
   VERSION 0.1
   LANGUAGES CXX
 )                  
@@ -51,3 +51,5 @@ add_subdirectory(Boot)
 add_subdirectory(Kernel)
 add_subdirectory(Drivers)
 add_subdirectory(UM)
+
+add_subdirectory(BuildTool)

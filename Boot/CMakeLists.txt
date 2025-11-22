@@ -2,7 +2,7 @@ add_executable(BootEFI
      UEFI.h
      BootModule.h
      BootMain.cpp
-     UEFI.cpp)
+     UEFI.cpp "BootModule.cpp" "Preboot.cpp" "Preboot.h")
 
 target_include_directories(BootEFI PRIVATE
     "${CMAKE_SOURCE_DIR}/extern/edk2/MdePkg/Include"
@@ -44,4 +44,6 @@ set_target_properties(BootEFI PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/boot     
   MSVC_ENABLE_EXCEPTIONS OFF
 )
+
+string(REGEX REPLACE "/RTC[su0-9]*" "" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 
