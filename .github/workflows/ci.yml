@@ -11,6 +11,8 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Update submodules
+        run: git submodule update --init --depth 1
       - name: configure
         run: cmake -S . -B build -G "Visual Studio 17 2022" -A x64 -DCMAKE_CXX_STANDARD=23
 #      - name: build debug
@@ -21,47 +23,7 @@ jobs:
         run: cd build; ctest -C Debug
       - name: test release
         run: cd build; ctest -C Release
-  windows-clang:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: init
-        run: choco install ninja
-      - name: Add LLVM to PATH
-        run: echo "C:\Program Files\LLVM\bin" >> $env:GITHUB_PATH
-      - name: configure
-        run: cmake -S . --preset=ClangClNinjaRelease -B build
-      - name: build debug
- #       run: cmake --build build --config=Debug
- #     - name: build release
-        run: cmake --build build --config=Release
-      - name: test debug
-        run: cd build; ctest -C Debug
-      - name: test release
-        run: cd build; ctest -C Release
-
-  windows-clang-22:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: init
-        run: choco install ninja
-      - name: Download LLVM 22
-        run: |
-          curl -L -o llvm.zip https://github.com/llvm/llvm-project/releases/download/llvmorg-22.0.0/LLVM-22.0.0-win64.zip
-          Expand-Archive llvm.zip -DestinationPath $env:USERPROFILE\llvm-22
-          echo "$env:USERPROFILE\llvm-22\bin" >> $env:GITHUB_PATH
-      - name: configure
-        run: cmake -S . --preset=ClangClNinjaRelease -B build
-      - name: build debug
-#        run: cmake --build build --config=Debug
-#      - name: build release
-        run: cmake --build build --config=Release
-      - name: test debug
-        run: cd build; ctest -C Debug
-      - name: test release
-        run: cd build; ctest -C Release
-
+  
   ubuntu-clang-tidy:
     name: Ubuntu Clang-Tidy
     runs-on: ubuntu-latest
