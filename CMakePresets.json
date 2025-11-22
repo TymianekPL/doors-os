@@ -1,4 +1,4 @@
-﻿{
+{
     "version": 3,
     "configurePresets": [
         {
@@ -28,7 +28,8 @@
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_POLICY_DEFAULT_CMP0091": "NEW",
                 "CMAKE_C_COMPILER": "clang-cl.exe",
-                "CMAKE_CXX_COMPILER": "clang-cl.exe"
+                "CMAKE_CXX_COMPILER": "clang-cl.exe",
+                "CMAKE_CXX_STANDARD": "23"
             },
             "architecture": {
                 "value": "x64",
