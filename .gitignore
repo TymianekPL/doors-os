@@ -427,4 +427,4 @@ FodyWeavers.xsd
 *.msm
 *.msp
 *.fd
-/Testing/Temporary/CTestCostData.txt
+CTestCostData.txt
