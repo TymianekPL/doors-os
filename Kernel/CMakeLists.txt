@@ -2,6 +2,7 @@ add_executable(Kernel
   Main/KernelMain.cpp
 )           
 enablePCH(Kernel)
+enableAVX(Kernel)
 
 target_compile_features(Kernel PUBLIC cxx_std_23)
 target_include_directories(Kernel PRIVATE ${CMAKE_SOURCE_DIR}/Shared/Include)
