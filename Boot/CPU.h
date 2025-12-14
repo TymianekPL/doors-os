@@ -23,17 +23,7 @@ namespace CPU
 		return __readcr0();
 #endif
 	}
-	template <>
-	std::size_t ReadControlRegister<1>(void) noexcept
-	{
-#ifdef __llvm__
-		std::size_t value{};
-		asm volatile("mov %%cr1, %0" : "=r"(value));
-		return value;
-#else
-		return __readcr1();
-#endif
-	}
+
 	template <>
 	std::size_t ReadControlRegister<2>(void) noexcept
 	{
