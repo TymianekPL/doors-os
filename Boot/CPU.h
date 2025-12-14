@@ -69,16 +69,6 @@ namespace CPU
 	}
 
 	template <>
-	void WriteControlRegister<1>(std::size_t value) noexcept
-	{
-#ifdef __llvm__
-		asm volatile("mov %0, %%cr1" ::"r"(value) : "memory");
-#else
-		__writecr1(value);
-#endif
-	}
-
-	template <>
 	void WriteControlRegister<2>(std::size_t value) noexcept
 	{
 #ifdef __llvm__
