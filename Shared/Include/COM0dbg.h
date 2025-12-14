@@ -1,8 +1,6 @@
 #pragma once
 
-#ifndef CHECKED_BUILD
-#warning "Cannot use this header in a non-checked build"
-#else
+#ifdef CHECKED_BUILD
 
 #include <intrin.h>
 #include <array>
