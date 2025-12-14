@@ -1,3 +1,4 @@
+#include <Windows.h>
 #include <cstddef>
 #include <filesystem>
 #include <fstream>
@@ -177,6 +178,36 @@ Configuration ParseArguments(int argc, char** argv)
 	return config;
 }
 
+struct TestContext
+{
+	std::unordered_map<std::string, std::string> properties{};
+	bool isSuccess = true;
+};
+static TestContext context{};
+
+void ParseCommand(const std::string& commandLine)
+{
+	// set name=value...
+	// print text...
+	//
+
+	std::string command = commandLine.substr(0, commandLine.find(' '));
+	std::string argumentsString = commandLine.find(' ') == std::string::npos ? "" : commandLine.substr(commandLine.find(' ') + 1);
+	if (command == "print") std::println("{}", argumentsString);
+	else if (command == "set")
+	{
+		auto equalSignPosition = argumentsString.find('=');
+		if (equalSignPosition != std::string::npos)
+		{
+			std::string name = argumentsString.substr(0, equalSignPosition);
+			std::string value = argumentsString.substr(equalSignPosition + 1);
+			context.properties[name] = value;
+			std::println("Setting '{}' to '{}'", name, value);
+		}
+	}
+	else if (command == "fail") { context.isSuccess = false; }
+}
+
 int main(int argc, char** argv) // NOLINT(bugprone-exception-escape)
 {
 	try
@@ -216,11 +247,12 @@ qemu-system-x86_64 \
 -no-shutdown \
 -m 2G \
 -machine q35,hpet=on \
--cpu max,migratable=no,monitor=on \
+-cpu max,+avx,+avx2,+xsave,+xsaveopt,migratable=no,monitor=on \
 -overcommit cpu-pm=on \
 -smp 1 \
 -rtc base=utc,clock=rt \
--serial stdio\
+-serial stdio \
+-monitor tcp:127.0.0.1:4444,server,nowait\
 ");
 	}
 	catch (const std::exception& e)
@@ -229,5 +261,5 @@ qemu-system-x86_64 \
 		return 1;
 	}
 
-	return 0;
+	return context.isSuccess ? 0 : -1;
 }

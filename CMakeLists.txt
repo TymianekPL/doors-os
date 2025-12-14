@@ -7,8 +7,12 @@ endif()
 project(" words"
   VERSION 0.1
   LANGUAGES CXX
-)                  
-                   
+)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+     add_compile_definitions(CHECKED_BUILD)
+endif()
+
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)   
@@ -45,6 +49,10 @@ function(enablePCH target)
   )
 endfunction()
 
+function(enableAVX target)
+  target_compile_options(${target} PUBLIC /arch:AVX)
+endfunction()
+
 add_subdirectory(Shared)
 
 add_subdirectory(Boot)
@@ -53,3 +61,6 @@ add_subdirectory(Drivers)
 add_subdirectory(UM)
 
 add_subdirectory(BuildTool)
+
+enable_testing()
+add_subdirectory(Tests)

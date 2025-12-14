@@ -16,7 +16,18 @@ Checks: >
   -cppcoreguidelines-special-member-functions,
   -readability-redundant-member-init,
   -bugprone-easily-swappable-parameters,
-  -cppcoreguidelines-pro-bounds-pointer-arithmetic
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -performance-no-int-to-ptr,
+  -modernize-use-auto,
+  -readability-math-missing-parentheses,
+  -readability-make-member-function-const,
+  -readability-avoid-return-with-void-value,
+  -cppcoreguidelines-avoid-c-arrays,
+  -modernize-avoid-c-arrays,
+  -readability-uppercase-literal-suffix,
+  -readability-named-parameter,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -readability-magic-numbers
 
 CheckOptions:
   # Identifier naming rules

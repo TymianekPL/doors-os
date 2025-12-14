@@ -2,7 +2,9 @@ add_executable(BootEFI
      UEFI.h
      BootModule.h
      BootMain.cpp
-     UEFI.cpp "BootModule.cpp" "Preboot.cpp" "Preboot.h")
+     UEFI.cpp "BootModule.cpp" "Preboot.cpp" "Preboot.h" "CPU.h")
+
+add_compile_definitions(_HAS_ITERATOR_DEBUGGING=0 _HAS_EXCEPTIONS=0)
 
 target_include_directories(BootEFI PRIVATE
     "${CMAKE_SOURCE_DIR}/extern/edk2/MdePkg/Include"
